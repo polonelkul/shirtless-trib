@@ -1,0 +1,29 @@
+/* reset default browser spacing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* pitch black bg */
+body {
+    background-color: #000000;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Courier New', Courier, monospace; 
+}
+
+/* text centering */
+.center-container {
+    text-align: center;
+}
+
+/* text stylizing */
+.teaser-text {
+    color: #ffffff;
+    font-size: 0.85rem; /* Makes the text cleanly small */
+    letter-spacing: 1px;
+}
