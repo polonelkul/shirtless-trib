@@ -9,6 +9,19 @@
 <body>
     <div class="center-container">
         <p class="teaser-text">Soon.</p>
+        
+        <!-- Retro CSS Lightswitch -->
+        <div class="switch-container" id="lightswitch" onclick="toggleLight()">
+            <div class="switch-housing">
+                <div class="switch-toggle"></div>
+            </div>
+        </div>
     </div>
+
+    <script>
+        function toggleLight() {
+            document.body.classList.toggle('light-mode');
+        }
+    </script>
 </body>
 </html>

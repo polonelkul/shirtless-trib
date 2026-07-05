@@ -1,11 +1,10 @@
-/* reset default browser spacing */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* pitch black bg */
+/* default dark mode */
 body {
     background-color: #000000;
     height: 100vh;
@@ -14,16 +13,70 @@ body {
     align-items: center;
     overflow: hidden;
     font-family: 'Courier New', Courier, monospace; 
+    transition: background-color 0.15s ease;
 }
 
-/* text centering */
+/* text, and switch */
 .center-container {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between "Soon." and the switch */
 }
 
-/* text stylizing */
+/* Styled text slightly bigger and bold for that retro video game pop */
 .teaser-text {
     color: #ffffff;
-    font-size: 0.85rem; /* Makes the text cleanly small */
+    font-size: 1.5rem; /* Noticeably bigger and crisp */
+    font-weight: bold;
     letter-spacing: 1px;
+}
+
+.switch-container {
+    cursor: pointer;
+    display: inline-block;
+}
+
+/* switch */
+.switch-housing {
+    width: 24px;
+    height: 40px;
+    background-color: #222;
+    border: 3px solid #ffffff; /* Pixelated look border */
+    position: relative;
+    padding: 2px;
+}
+
+/* toggle structure */
+.switch-toggle {
+    width: 100%;
+    height: 50%;
+    background-color: #ffffff;
+    position: absolute;
+    top: 0; /* Starts in the UP position */
+    left: 0;
+    border: 2px solid #222;
+}
+
+/* lightmode */
+
+/* white */
+body.light-mode {
+    background-color: #ffffff;
+}
+
+/* black */
+body.light-mode .teaser-text {
+    color: #000000;
+}
+
+/* switch housing updates */
+body.light-mode .switch-housing {
+    background-color: #dddddd;
+    border-color: #000000;
+}
+
+body.light-mode .switch-toggle {
+    top: 50%; /* Moves to the DOWN position */
+    background-color: #333333;
+    border-color: #dddddd;
 }
