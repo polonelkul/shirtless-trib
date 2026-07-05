@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-/* default dark mode */
+/* default pitch black bg */
 body {
     background-color: #000000;
     height: 100vh;
@@ -13,70 +13,107 @@ body {
     align-items: center;
     overflow: hidden;
     font-family: 'Courier New', Courier, monospace; 
+    position: relative;
     transition: background-color 0.15s ease;
 }
 
-/* text, and switch */
 .center-container {
     display: flex;
     align-items: center;
-    gap: 20px; /* Space between "Soon." and the switch */
+    gap: 20px;
+    z-index: 10; /* hey.. these are all mi hearts... */
 }
 
-/* Styled text slightly bigger and bold for that retro video game pop */
 .teaser-text {
     color: #ffffff;
-    font-size: 1.5rem; /* Noticeably bigger and crisp */
+    font-size: 1.5rem;
     font-weight: bold;
     letter-spacing: 1px;
+    transition: color 0.15s ease;
 }
 
+/* --- lightswitch --- */
 .switch-container {
     cursor: pointer;
     display: inline-block;
 }
 
-/* switch */
 .switch-housing {
     width: 24px;
     height: 40px;
     background-color: #222;
-    border: 3px solid #ffffff; /* Pixelated look border */
+    border: 3px solid #ffffff;
     position: relative;
     padding: 2px;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
-/* toggle structure */
 .switch-toggle {
     width: 100%;
     height: 50%;
     background-color: #ffffff;
     position: absolute;
-    top: 0; /* Starts in the UP position */
+    top: 0;
     left: 0;
     border: 2px solid #222;
 }
 
-/* lightmode */
+/* --- mi hearts' animation system..ʚɞ --- */
+#hearts-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* no-no to pressing switches, mi hearts!!<( ⸝⸝•̀ - •́⸝⸝)> */
+    overflow: hidden;
+}
 
-/* white */
+.heart {
+    position: absolute;
+    color: transparent; /* transparent hearts */
+    -webkit-text-stroke: 2px #000000; /* black outline.. they haven't been loved.. yet.‹𝟑 */
+    user-select: none;
+    opacity: 0;
+    animation: drift linear infinite;
+}
+
+/* motion. +++i got some of that as well!! */
+@keyframes drift {
+    0% {
+        opacity: 0;
+        transform: translate(0, 0) rotate(0deg);
+    }
+    10% {
+        opacity: 0.8; /* hey, mi hearts appeared!! */
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0;
+        /* drifts aggressively.. mrrp.(,,>﹏<,,) */
+        transform: translate(120vw, 30vh) rotate(45deg); 
+    }
+}
+
+/* --- light mode --- */
+
 body.light-mode {
     background-color: #ffffff;
 }
 
-/* black */
 body.light-mode .teaser-text {
     color: #000000;
 }
 
-/* switch housing updates */
 body.light-mode .switch-housing {
     background-color: #dddddd;
     border-color: #000000;
 }
 
 body.light-mode .switch-toggle {
-    top: 50%; /* Moves to the DOWN position */
+    top: 50%;
     background-color: #333333;
     border-color: #dddddd;
 }
