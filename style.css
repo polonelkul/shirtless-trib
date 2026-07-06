@@ -2,19 +2,19 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Fredoka', sans-serif;
 }
 
-/* default pitch black bg */
+/* the base,, reworked..♡ */
 body {
-    background-color: #000000;
+    background-color: #0b0914;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    font-family: 'Courier New', Courier, monospace; 
     position: relative;
-    transition: background-color 0.15s ease, opacity 1.2s ease;
+    transition: background-color 0.25s ease, opacity 1.2s ease;
     opacity: 1;
 }
 
@@ -25,53 +25,62 @@ body.scene-fade-out {
 .center-container {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 25px;
     z-index: 10;
 }
 
 .teaser-text {
     color: #ffffff;
-    font-size: 1.5rem;
-    font-weight: bold;
-    letter-spacing: 1px;
-    transition: color 0.15s ease, font-size 0.2s ease;
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    transition: color 0.25s ease, font-size 0.3s ease;
 }
 
-/* --- mi cute fontiess♡ --- */
+/* --- cute-mode activated..♡ --- */
 .teaser-text.cute-mode {
-    font-family: 'Fredoka', sans-serif;
-    font-size: 5rem; 
-    color: #ff69b4 !important; 
-    text-shadow: 0 0 20px rgba(255, 105, 180, 0.6);
+    font-size: 5.5rem; 
+    color: #ff6ebb !important; 
+    text-shadow: 0 0 25px rgba(255, 110, 187, 0.7);
+    animation: textHeartbeat 0.6s infinite alternate ease-in-out;
 }
 
-/* --- lightswitch.. turn it on,, or don't.. i suppose.(╥﹏╥)--- */
+@keyframes textHeartbeat {
+    0% { transform: scale(0.96); }
+    100% { transform: scale(1.04); }
+}
+
+/* --- lightswitch,, reworked!♡ --- */
 .switch-container {
     cursor: pointer;
     display: inline-block;
 }
 
 .switch-housing {
-    width: 24px;
-    height: 40px;
-    background-color: #222;
+    width: 28px;
+    height: 46px;
+    background-color: #1e1a30;
     border: 3px solid #ffffff;
+    border-radius: 20px; /* Pillow-soft round edges */
     position: relative;
     padding: 2px;
-    transition: border-color 0.15s ease, background-color 0.15s ease;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+    transition: border-color 0.25s ease, background-color 0.25s ease;
 }
 
 .switch-toggle {
-    width: 100%;
-    height: 50%;
+    width: 16px;
+    height: 16px;
     background-color: #ffffff;
+    border-radius: 50%; /* Completely circular toggle bead */
     position: absolute;
-    top: 0;
-    left: 0;
-    border: 2px solid #222;
+    top: 4px;
+    left: 3px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: top 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.25s ease;
 }
 
-/* --- mi hearts are floating now!!♡ --- */
 #hearts-container, #secret-animation-layer {
     position: absolute;
     top: 0;
@@ -85,7 +94,7 @@ body.scene-fade-out {
 .heart {
     position: absolute;
     color: transparent;
-    -webkit-text-stroke: 2px #000000;
+    -webkit-text-stroke: 2px #ffb6c1; /* ehehe, hue bordersss!!♡ */
     user-select: none;
     opacity: 0;
     animation: drift linear infinite;
@@ -93,123 +102,127 @@ body.scene-fade-out {
 
 @keyframes drift {
     0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0; }
-    10% { opacity: 0.8; }
-    90% { opacity: 0.8; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
     100% { transform: translate3d(120vw, 30vh, 0) rotate(45deg); opacity: 0; }
 }
 
-/* --- uuu, so beautiful!!♡ --- */
+/* --- cutie effects for mi secretive heart..♡ --- */
 #secret-rainbow-heart {
     position: absolute;
-    bottom: 25px;
-    right: 25px;
-    font-size: 50px;
+    bottom: 30px;
+    right: 30px;
+    font-size: 55px;
     cursor: pointer;
     user-select: none;
     pointer-events: auto; 
     display: none; 
-    
-    /* it's solid,, but it's so nice..♡ */
     color: transparent;
-    background: linear-gradient(45deg, #ff1493, #ff69b4, #ffb6c1, #c71585, #ff6ebb);
-    background-size: 300% 300%;
+    
+    /* holo-effect for mi cutie elements..♡ */
+    background: linear-gradient(
+        135deg, 
+        #ff1493 0%,   /* Vibrant Hot Pink */
+        #ff69b4 25%,  /* Bubblegum Pink */
+        #ffb6c1 45%,  /* Ultra Bright Pastel Gloss */
+        #4a0d2e 70%,  /* Deep Dark Plum / CS2 Holo Shadow */
+        #ff007f 100%  /* Vibrant Neon Pink Magenta */
+    );
+    background-size: 400% 400%;
     -webkit-background-clip: text;
     background-clip: text;
-    animation: pinkMessFlow 1.5s ease infinite;
+    filter: drop-shadow(0 4px 12px rgba(255, 20, 147, 0.5));
+    animation: cs2HoloShaderFlow 2s linear infinite;
 }
 
 #secret-rainbow-heart.visible {
     display: block;
 }
 
-@keyframes pinkMessFlow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+@keyframes cs2HoloShaderFlow {
+    0% { background-position: 0% 50%; transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.1) rotate(5deg); }
+    100% { background-position: 100% 50%; transform: scale(1) rotate(0deg); }
 }
 
-/* --- (hopefully) smooth attacks by YOUR best friend!♡ --- */
+/* --- hopefully,, it won't be laggy anymore..♡ --- */
 
-/* mi pink heart dropped.. thank you for clicking enough.♡ */
-.dropping-pink-heart-wrapper {
+/* simplifying..♡ */
+.dropping-pink-heart {
     position: absolute;
-    top: -80px;
-    width: 75px;  /* Significantly larger scaling layout */
-    height: 75px;
+    top: -90px;
+    width: 80px; 
+    height: 80px;
     z-index: 5;
     will-change: transform;
-    /* this uses your hardware a bit,, be careful with it!!(╥‸╥) */
-    animation: asrielSwayDrop 1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: hardwareOptimizedDrop 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
-.cute-pink-heart-svg {
+.dropping-pink-heart svg {
     width: 100%;
     height: 100%;
-    filter: drop-shadow(0 0 12px #ff0080);
+    filter: drop-shadow(0 0 15px rgba(255, 110, 187, 0.8));
 }
 
-/* ehehe,, seems like you've seen this bullet-pattern somewhere, didn't you...? */
-/* wait, why are you even here, in the files...? */
-/* i hope you enjoy your stay on the site, though!ฅ^>⩊<^ฅ */
-@keyframes asrielSwayDrop {
+@keyframes hardwareOptimizedDrop {
     0% {
-        transform: translate3d(0, 0, 0) scale(0.5);
+        transform: translate3d(0, 0, 0) scale(0.6) rotate(-10deg);
         opacity: 0;
     }
     15% {
         opacity: 1;
-        transform: translate3d(-3vw, 12vh, 0) scale(1.2);
-    }
-    45% {
-        transform: translate3d(4vw, 35vh, 0) scale(1);
-    }
-    75% {
-        transform: translate3d(-4vw, 58vh, 0) scale(1.1);
     }
     100% {
-        transform: translate3d(2vw, 75vh, 0) scale(1);
+        transform: translate3d(2vw, 85vh, 0) scale(1.1) rotate(15deg);
         opacity: 1;
     }
 }
 
-/* rainbowww!! */
 .rainbow-burst-shard {
     position: absolute;
-    font-size: 34px;
+    font-size: 36px;
     font-weight: bold;
     user-select: none;
     z-index: 4;
     will-change: transform;
-    animation: rapidRainbow 0.15s infinite linear, burstOutwardSmooth 1.4s cubic-bezier(0.05, 0.85, 0.2, 1) forwards;
+    animation: rapidRainbow 0.12s infinite linear, burstOutwardClean 1.4s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
 }
 
-@keyframes burstOutwardSmooth {
+@keyframes burstOutwardClean {
     0% {
-        transform: translate3d(-50%, -50%, 0) scale(1.3);
+        transform: translate3d(-50%, -50%, 0) scale(1.2);
         opacity: 1;
     }
-    70% {
+    75% {
         opacity: 1;
     }
     100% {
-        transform: translate3d(calc(-50% + var(--tx)), calc(-50% + var(--ty)), 0) scale(0.3);
+        transform: translate3d(calc(-50% + var(--tx)), calc(-50% + var(--ty)), 0) scale(0.2);
         opacity: 0;
     }
 }
 
-/* hyper-responsive cutiesssss...♡ */
 @keyframes rapidRainbow {
-    0%   { color: #ff0000; }
-    17%  { color: #ffa500; }
-    33%  { color: #ffff00; }
-    50%  { color: #008000; }
-    67%  { color: #0000ff; }
-    83%  { color: #4b0082; }
-    100% { color: #ee82ee; }
+    0%   { color: #ff3b3b; }
+    20%  { color: #ff9f43; }
+    40%  { color: #feca57; }
+    60%  { color: #1dd1a1; }
+    80%  { color: #54a0ff; }
+    100% { color: #f368e0; }
 }
 
-/* --- lightmode --- */
-body.light-mode { background-color: #ffffff; }
-body.light-mode .teaser-text:not(.cute-mode) { color: #000000; }
-body.light-mode .switch-housing { background-color: #dddddd; border-color: #000000; }
-body.light-mode .switch-toggle { top: 50%; background-color: #333333; border-color: #dddddd; }
+/* --- lightmode,, upgraded.♡ --- */
+body.light-mode { 
+    background-color: #fff5f7; /* for the cozier looks.♡ */
+}
+body.light-mode .teaser-text:not(.cute-mode) { 
+    color: #5d4d5b; 
+}
+body.light-mode .switch-housing { 
+    background-color: #ffe3e9; 
+    border-color: #5d4d5b; 
+}
+body.light-mode .switch-toggle { 
+    top: 21px; /* shifts down smoothly.. mrrp..♡ */
+    background-color: #ff6ebb; 
+}
