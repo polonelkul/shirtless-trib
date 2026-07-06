@@ -6,7 +6,7 @@
     font-family: 'Fredoka', sans-serif;
 }
 
-/* Base Configuration - Crisp Pitch Black background context for ultra-clean look ♡ */
+/* Base Configuration */
 body {
     background-color: #000000;
     height: 100vh;
@@ -24,28 +24,26 @@ body.scene-fade-out {
     opacity: 0;
 }
 
-/* Twinkly coquette pastel stardust floating texture layer..♡ */
+/* Elegant geometric ambient stardust background accenting */
 body::before {
     content: "";
     position: absolute;
     inset: 0;
     background-image:
-        radial-gradient(2.5px 2.5px at 20% 30%, rgba(255, 192, 203, 0.65) 50%, transparent 51%),
-        radial-gradient(2px 2px at 70% 65%, rgba(255, 105, 180, 0.6) 50%, transparent 51%),
-        radial-gradient(1.5px 1.5px at 40% 80%, rgba(255, 255, 255, 0.5) 50%, transparent 51%),
-        radial-gradient(2px 2px at 85% 15%, rgba(255, 182, 193, 0.7) 50%, transparent 51%),
-        radial-gradient(2.5px 2.5px at 55% 45%, rgba(244, 154, 193, 0.55) 50%, transparent 51%);
+        radial-gradient(2.5px 2.5px at 20% 30%, rgba(255, 192, 203, 0.4) 50%, transparent 51%),
+        radial-gradient(2px 2px at 70% 65%, rgba(255, 182, 193, 0.35) 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 40% 80%, rgba(255, 255, 255, 0.3) 50%, transparent 51%),
+        radial-gradient(2px 2px at 85% 15%, rgba(255, 182, 193, 0.4) 50%, transparent 51%);
     background-size: 100% 100%;
     animation: twinkleDust 3.5s ease-in-out infinite alternate;
     pointer-events: none;
 }
 
 @keyframes twinkleDust {
-    0% { opacity: 0.35; transform: scale(0.98); }
-    100% { opacity: 0.95; transform: scale(1.02); }
+    0% { opacity: 0.4; transform: scale(0.99); }
+    100% { opacity: 0.85; transform: scale(1.01); }
 }
 
-/* FIXED: Explicitly positioned relative context to correctly hold stacking priority */
 .center-container {
     display: flex;
     align-items: center;
@@ -60,29 +58,27 @@ body::before {
     font-size: 2rem;
     font-weight: 600;
     letter-spacing: 0.5px;
-    text-shadow: 0 0 15px rgba(255, 182, 220, 0.45);
+    text-shadow: 0 0 15px rgba(255, 182, 220, 0.35);
     transition: color 0.25s ease, font-size 0.3s ease;
 }
 
-/* --- cute-mode activated with soft princess drop-glows..♡ --- */
 .teaser-text.cute-mode {
     font-size: 4.8rem;
     color: #ff6ebb !important;
     text-align: center;
     line-height: 1.1;
     text-shadow:
-        0 0 25px rgba(255, 110, 187, 0.85),
-        0 0 50px rgba(255, 182, 220, 0.5);
+        0 0 25px rgba(255, 110, 187, 0.8),
+        0 0 50px rgba(255, 182, 220, 0.4);
     animation: textHeartbeat 0.55s infinite alternate ease-in-out;
 }
 
 @keyframes textHeartbeat {
-    0% { transform: scale(0.95) rotate(-1.5deg); }
-    100% { transform: scale(1.04) rotate(1.5deg); }
+    0% { transform: scale(0.96) rotate(-1deg); }
+    100% { transform: scale(1.03) rotate(1deg); }
 }
 
-/* --- switch container redesigned to look like a tiny ribbon accessory..♡ --- */
-/* FIXED: Forced topmost pointer layer index to ensure complete click reliability */
+/* Interactive Switch Styling */
 .switch-container {
     cursor: pointer;
     display: inline-block;
@@ -93,11 +89,11 @@ body::before {
 }
 
 .switch-container:hover {
-    transform: scale(1.12) rotate(-4deg);
+    transform: scale(1.1) rotate(-3deg);
 }
 
 .switch-container:active {
-    transform: scale(0.9);
+    transform: scale(0.92);
 }
 
 .switch-housing {
@@ -108,7 +104,7 @@ body::before {
     border-radius: 25px; 
     position: relative;
     padding: 2px;
-    box-shadow: 0 0 16px rgba(255, 182, 220, 0.4), inset 0 0 6px rgba(255, 252, 253, 0.1);
+    box-shadow: 0 0 16px rgba(255, 182, 220, 0.3), inset 0 0 6px rgba(255, 252, 253, 0.1);
     transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
 }
 
@@ -120,21 +116,8 @@ body::before {
     position: absolute;
     top: 4px;
     left: 3px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.35), 0 0 8px rgba(255, 182, 220, 0.8);
-    transition: top 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.25s ease;
-}
-
-/* A soft satin coquette ribbon bow riding right on top of the switch node! 🎀 */
-.switch-toggle::after {
-    content: "🎀";
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    line-height: 1;
-    transform: translateY(-0.5px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3), 0 0 6px rgba(255, 182, 220, 0.6);
+    transition: top 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 #hearts-container, #secret-animation-layer {
@@ -154,7 +137,7 @@ body::before {
     user-select: none;
     opacity: 0;
     animation: drift linear infinite;
-    filter: drop-shadow(0 0 5px rgba(255, 182, 220, 0.6));
+    filter: drop-shadow(0 0 5px rgba(255, 182, 220, 0.5));
 }
 
 @keyframes drift {
@@ -165,7 +148,7 @@ body::before {
     100% { transform: translate3d(120vw, 30vh, 0) rotate(50deg) scale(0.8); opacity: 0; }
 }
 
-/* --- Extra-reflective premium gloss CS2 Holo sticker heart shader..♡ --- */
+/* FIXED: Replaced rapid rainbow jumping with your precise 5-stage looping gradient pattern */
 #secret-rainbow-heart {
     position: absolute;
     bottom: 30px;
@@ -177,38 +160,37 @@ body::before {
     display: none;
     color: transparent;
 
+    /* Left-to-right gradient sequence blueprint mapped for horizontal sliding context */
     background: linear-gradient(
-        135deg,
-        #ff007f 0%,   
-        #ff69b4 18%,  
-        #fff0f5 35%,  
-        #ffb6c1 50%,  
-        #3b021b 72%,  
-        #ff1493 100%  
+        to right,
+        #fff0f5 0%,    /* Phase 1 & 5: Ultra light shades */
+        #ff7da1 50%,   /* Phase 2 & 4: Moderate pink shades */
+        #7a0035 100%   /* Phase 3: Darkest shades */
     );
-    background-size: 400% 400%;
+    background-size: 300% 100%;
     -webkit-background-clip: text;
     background-clip: text;
-    filter: drop-shadow(0 4px 16px rgba(255, 20, 147, 0.75)) drop-shadow(0 0 4px rgba(255, 255, 255, 0.5));
-    animation: cs2HoloShaderFlow 2.2s linear infinite, secretFloat 2s ease-in-out infinite;
+    filter: drop-shadow(0 4px 12px rgba(255, 110, 187, 0.5));
+    animation: cleanHoloCycle 3.5s ease-in-out infinite, secretFloat 2s ease-in-out infinite;
 }
 
 #secret-rainbow-heart.visible {
     display: block;
 }
 
-@keyframes cs2HoloShaderFlow {
-    0% { background-position: 0% 50%; transform: scale(1) rotate(0deg); }
-    50% { transform: scale(1.12) rotate(6deg); }
-    100% { background-position: 100% 50%; transform: scale(1) rotate(0deg); }
+/* Perfectly smooth pendular oscillation aligning directly with your specified timeline stages */
+@keyframes cleanHoloCycle {
+    0%, 100% { background-position: 0% 50%; }   /* 1 & 5: Starts and ends on really light shades */
+    25%, 75% { background-position: 50% 50%; }  /* 2 & 4: Passes through the mid-tone pink shades */
+    50% { background-position: 100% 50%; }      /* 3: Hits the apex dark shade exactly at mid-timeline */
 }
 
 @keyframes secretFloat {
     0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-8px); }
 }
 
-/* --- Chilling Firework Drop Logic --- */
+/* Particle Trajectory Architecture */
 .dropping-pink-heart {
     position: absolute;
     top: -100px; 
@@ -222,82 +204,58 @@ body::before {
 .dropping-pink-heart svg {
     width: 100%;
     height: 100%;
-    filter: drop-shadow(0 0 18px rgba(255, 110, 187, 0.9)) drop-shadow(0 0 35px rgba(255, 182, 220, 0.45));
+    filter: drop-shadow(0 0 15px rgba(255, 110, 187, 0.8));
 }
 
 @keyframes fireworkFloatDown {
-    0% {
-        transform: translate3d(0, 0, 0) scale(0.4) rotate(-8deg);
-        opacity: 0;
-    }
-    15% {
-        opacity: 1;
-        transform: translate3d(0, calc(var(--target-y) * 0.15), 0) scale(1.15) rotate(4deg);
-    }
-    100% {
-        transform: translate3d(0, var(--target-y), 0) scale(1) rotate(-6deg);
-        opacity: 1;
-    }
+    0% { transform: translate3d(0, 0, 0) scale(0.5) rotate(-5deg); opacity: 0; }
+    15% { opacity: 1; transform: translate3d(0, calc(var(--target-y) * 0.15), 0) scale(1.1) rotate(3deg); }
+    100% { transform: translate3d(0, var(--target-y), 0) scale(1) rotate(-4deg); opacity: 1; }
 }
 
-/* Girly magical trail properties 🌸 */
 .heart-sparkle-trail {
     position: absolute;
-    font-size: 16px;
-    text-shadow: 0 0 8px rgba(255, 182, 193, 1), 0 0 3px #ffffff;
+    font-size: 15px;
+    text-shadow: 0 0 6px rgba(255, 182, 193, 0.9), 0 0 2px #ffffff;
+    color: #fff0f3;
     pointer-events: none;
     z-index: 5;
     will-change: transform, opacity;
-    animation: sparkleTrailFade 0.75s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation: sparkleTrailFade 0.7s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
 @keyframes sparkleTrailFade {
-    0% { transform: scale(1.2) translateY(0) rotate(0deg); opacity: 1; }
-    100% { transform: scale(0.4) translateY(25px) rotate(30deg); opacity: 0; }
+    0% { transform: scale(1.2) translateY(0); opacity: 1; }
+    100% { transform: scale(0.5) translateY(20px); opacity: 0; }
 }
 
-/* Adorable circular pop-burst textures */
 .rainbow-burst-shard {
     position: absolute;
-    font-size: 38px;
+    font-size: 32px;
     font-weight: bold;
     user-select: none;
     z-index: 4;
     will-change: transform;
-    filter: drop-shadow(0 0 10px currentColor);
-    animation: rapidRainbow 0.1s infinite linear, burstOutwardClean 1.4s cubic-bezier(0.1, 0.85, 0.25, 1) forwards;
+    filter: drop-shadow(0 0 8px currentColor);
+    animation: shardColorCycle 0.2s infinite linear, burstOutwardClean 1.4s cubic-bezier(0.1, 0.85, 0.25, 1) forwards;
 }
 
 @keyframes burstOutwardClean {
-    0% {
-        transform: translate3d(-50%, -50%, 0) scale(1.4) rotate(0deg);
-        opacity: 1;
-    }
-    75% {
-        opacity: 1;
-    }
-    100% {
-        transform: translate3d(calc(-50% + var(--tx)), calc(-50% + var(--ty)), 0) scale(0.1) rotate(var(--spin, 120deg));
-        opacity: 0;
-    }
+    0% { transform: translate3d(-50%, -50%, 0) scale(1.3) rotate(0deg); opacity: 1; }
+    100% { transform: translate3d(calc(-50% + var(--tx)), calc(-50% + var(--ty)), 0) scale(0.1) rotate(var(--spin, 120deg)); opacity: 0; }
 }
 
-@keyframes rapidRainbow {
-    0%   { color: #ff6ec7; }
-    20%  { color: #ff9ecf; }
-    40%  { color: #ffd6ec; }
-    60%  { color: #ffb3d9; }
-    80%  { color: #fca1c9; }
-    100% { color: #ff6ec7; }
+@keyframes shardColorCycle {
+    0%, 100% { color: #ff7fa3; }
+    50% { color: #ffd6ec; }
 }
 
-/* Soft blooming ring glow mesh */
 .burst-pop-ring {
     position: absolute;
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    border: 3.5px solid rgba(255, 182, 220, 0.85);
+    border: 3px solid rgba(255, 182, 220, 0.8);
     transform: translate(-50%, -50%);
     z-index: 3;
     pointer-events: none;
@@ -305,25 +263,23 @@ body::before {
 }
 
 @keyframes popRingGrow {
-    0% { width: 10px; height: 10px; opacity: 0.95; border-width: 5px; }
-    100% { width: 175px; height: 175px; opacity: 0; border-width: 1px; }
+    0% { width: 10px; height: 10px; opacity: 0.9; border-width: 4px; }
+    100% { width: 170px; height: 170px; opacity: 0; border-width: 1px; }
 }
 
-/* --- lightmode upgraded into a soft sugar-spun cotton candy sky..♡ --- */
+/* Light Mode Backdrops */
 body.light-mode {
-    background: radial-gradient(circle at 30% 20%, #fff2f6 0%, #fff7f9 55%, #ffeef4 100%);
+    background: radial-gradient(circle at 30% 20%, #fff4f7 0%, #fff9fb 60%, #fff0f5 100%);
 }
 body.light-mode::before {
-    opacity: 0.65;
+    opacity: 0.5;
 }
 body.light-mode .teaser-text:not(.cute-mode) {
     color: #826078;
-    text-shadow: 0 0 10px rgba(255, 105, 180, 0.15);
 }
 body.light-mode .switch-housing {
-    background-color: #fff0f3;
+    background-color: #fff3f6;
     border-color: #ffb6c1;
-    box-shadow: 0 0 16px rgba(255, 182, 220, 0.5);
 }
 body.light-mode .switch-toggle {
     top: 23px; 
