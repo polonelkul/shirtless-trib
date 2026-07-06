@@ -45,11 +45,14 @@ body::before {
     100% { opacity: 0.95; transform: scale(1.02); }
 }
 
+/* FIXED: Explicitly positioned relative context to correctly hold stacking priority */
 .center-container {
     display: flex;
     align-items: center;
     gap: 30px;
-    z-index: 10;
+    position: relative;
+    z-index: 999;
+    pointer-events: auto;
 }
 
 .teaser-text {
@@ -79,9 +82,13 @@ body::before {
 }
 
 /* --- switch container redesigned to look like a tiny ribbon accessory..♡ --- */
+/* FIXED: Forced topmost pointer layer index to ensure complete click reliability */
 .switch-container {
     cursor: pointer;
     display: inline-block;
+    position: relative;
+    z-index: 1000;
+    pointer-events: auto;
     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -97,7 +104,7 @@ body::before {
     width: 32px;
     height: 50px;
     background-color: #0f0d1a;
-    border: 3px solid #ffb6c1; /* Beautifully soft pastel pink border texturing */
+    border: 3px solid #ffb6c1; 
     border-radius: 25px; 
     position: relative;
     padding: 2px;
@@ -172,12 +179,12 @@ body::before {
 
     background: linear-gradient(
         135deg,
-        #ff007f 0%,   /* Vibrant Hot Fuchsia */
-        #ff69b4 18%,  /* Sweet Bubblegum */
-        #fff0f5 35%,  /* Creamy Holographic Pearl Gloss */
-        #ffb6c1 50%,  /* Pastel Silk Pink */
-        #3b021b 72%,  /* Deep Metallic Dark Plum Foil */
-        #ff1493 100%  /* Rich Neon Rose Pink */
+        #ff007f 0%,   
+        #ff69b4 18%,  
+        #fff0f5 35%,  
+        #ffb6c1 50%,  
+        #3b021b 72%,  
+        #ff1493 100%  
     );
     background-size: 400% 400%;
     -webkit-background-clip: text;
@@ -201,7 +208,7 @@ body::before {
     50% { transform: translateY(-10px); }
 }
 
-/* --- Chilling Firework Drop Logic (Lag-Free & Adorable) --- */
+/* --- Chilling Firework Drop Logic --- */
 .dropping-pink-heart {
     position: absolute;
     top: -100px; 
