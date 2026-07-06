@@ -1,0 +1,168 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* default pitch black bg */
+body {
+    background-color: #000000;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Courier New', Courier, monospace; 
+    position: relative;
+    transition: background-color 0.15s ease, opacity 1.2s ease;
+    opacity: 1;
+}
+
+/* fade-out!! AAAA! */
+body.scene-fade-out {
+    opacity: 0;
+}
+
+.center-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 10;
+}
+
+.teaser-text {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: color 0.15s ease, font-size 0.2s ease;
+}
+
+/* --- how cute,, please last for long!! (it won't,, only 7 seconds.(╥‸╥)) --- */
+.teaser-text.cute-mode {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 4rem; /* Noticeably larger styling adjustments */
+    color: #ff69b4 !important; /* Forces soft hot pink state */
+    text-shadow: 0 0 15px rgba(255, 105, 180, 0.4);
+}
+
+/* --- lightswitch --- */
+.switch-container {
+    cursor: pointer;
+    display: inline-block;
+}
+
+.switch-housing {
+    width: 24px;
+    height: 40px;
+    background-color: #222;
+    border: 3px solid #ffffff;
+    position: relative;
+    padding: 2px;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.switch-toggle {
+    width: 100%;
+    height: 50%;
+    background-color: #ffffff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 2px solid #222;
+}
+
+/* --- mi hearts are floating... wow!!!ꉂ(˵˃ ᗜ ˂˵) --- */
+#hearts-container, #secret-animation-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    color: transparent;
+    -webkit-text-stroke: 2px #000000;
+    user-select: none;
+    opacity: 0;
+    animation: drift linear infinite;
+}
+
+@keyframes drift {
+    0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { transform: translate(120vw, 30vh) rotate(45deg); opacity: 0; }
+}
+
+/* --- secret,, button?? a what...? secret!! secret!!! WOO-HOO!!(∩˃o˂∩) --- */
+#secret-rainbow-heart {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    font-size: 38px;
+    cursor: pointer;
+    user-select: none;
+    pointer-events: auto; /* it has to register... it HAS to. */
+    display: none;
+    animation: rapidRainbow 0.25s infinite linear;
+}
+
+#secret-rainbow-heart.visible {
+    display: block;
+}
+
+/* --- YOUR best friend's bullet-pattern,, uuu! --- */
+
+/* mi pink hearts go BOOOOOM!! */
+.dropping-pink-heart {
+    position: absolute;
+    top: -50px;
+    font-size: 55px;
+    color: #ff6ebb;
+    text-shadow: 0 0 10px #ff0080;
+    z-index: 5;
+    animation: dropDown 1.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes dropDown {
+    0% { transform: translateY(0) scale(0.6); opacity: 0; }
+    15% { opacity: 1; transform: translateY(10vh) scale(1.1); }
+    100% { transform: translateY(65vh) scale(1); opacity: 1; }
+}
+
+.rainbow-burst-shard {
+    position: absolute;
+    font-size: 32px;
+    font-weight: bold;
+    user-select: none;
+    z-index: 4;
+    animation: rapidRainbow 0.2s infinite linear, burstOutward 1.8s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes burstOutward {
+    0% { transform: translate(0, 0) scale(1); opacity: 1; }
+    80% { opacity: 1; }
+    100% { transform: translate(var(--tx), var(--ty)) scale(0.5); opacity: 0; }
+}
+
+/* cycling running.. rapidly,,?(*ᴗ͈ˬᴗ͈)ꕤ*.ﾟ */
+@keyframes rapidRainbow {
+    0%   { color: #ff0000; }
+    17%  { color: #ffa500; }
+    33%  { color: #ffff00; }
+    50%  { color: #008000; }
+    67%  { color: #0000ff; }
+    83%  { color: #4b0082; }
+    100% { color: #ee82ee; }
+}
+
+/* --- lightmode --- */
+body.light-mode { background-color: #ffffff; }
+body.light-mode .teaser-text:not(.cute-mode) { color: #000000; }
+body.light-mode .switch-housing { background-color: #dddddd; border-color: #000000; }
+body.light-mode .switch-toggle { top: 50%; background-color: #333333; border-color: #dddddd; }
