@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soon. ♡</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for clean layout typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Main backdrop for ambient floating hearts -->
+    <div id="hearts-container"></div>
+    <!-- Layer for particle physics reactions -->
+    <div id="secret-animation-layer"></div>
+
+    <div class="center-container" id="main-content">
+        <p class="teaser-text" id="text-display">Soon.</p>
+        
+        <!-- Interactive lightswitch node -->
+        <div class="switch-container" id="lightswitch-wrapper" onclick="toggleLight()">
+            <div class="switch-housing">
+                <div class="switch-toggle"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Easter-egg interactive heart anchor -->
+    <div id="secret-rainbow-heart" onclick="triggerSecretAnimation()">♥</div>
+
+    <script>
+        const container = document.getElementById('hearts-container');
+        const secretLayer = document.getElementById('secret-animation-layer');
+        const secretHeart = document.getElementById('secret-rainbow-heart');
+        const mainContent = document.getElementById('main-content');
+        const textDisplay = document.getElementById('text-display');
+
+        let switchClickCount = 0;
+        let secretTriggeredThisSession = false;
+        let animationMusic = null; 
+
+        let targetClicks = Math.floor(Math.random() * 4) + 6; 
+
+        function playClickSound() {
+            const audio = new Audio('smolheart.mp3');
+            audio.volume = 0.5;
+            audio.play().catch(e => console.log("Audio file missing/blocked:", e));
+        }
+
+        function playExplosionSound() {
+            const audio = new Audio('pinkiii.mp3');
+            audio.volume = 0.5;
+            audio.play().catch(e => console.log("Audio file missing/blocked:", e));
+        }
+
+        function startFullAnimationMusic() {
+            animationMusic = new Audio('heartheartheart.mp3');
+            animationMusic.volume = 0.5;
+            animationMusic.play().catch(e => console.log("Audio file missing/blocked:", e));
+        }
+
+        function stopFullAnimationMusic() {
+            if (animationMusic) {
+                animationMusic.pause();
+                animationMusic.currentTime = 0; 
+            }
+        }
+
+        function toggleLight() {
+            const isLightMode = document.body.classList.toggle('light-mode');
+            
+            if (isLightMode) {
+                createNormalHearts(35);
+            } else {
+                container.innerHTML = '';
+            }
+
+            if (!secretTriggeredThisSession) {
+                switchClickCount++;
+                if (switchClickCount === targetClicks) {
+                    secretHeart.classList.add('visible');
+                } else {
+                    secretHeart.classList.remove('visible');
+                }
+            }
+        }
+
+        function createNormalHearts(count) {
+            container.innerHTML = '';
+            for (let i = 0; i < count; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerText = '♡';
+                heart.style.left = Math.random() * -20 + 'vw'; 
+                heart.style.top = Math.random() * 100 + 'vh';
+                const size = Math.random() * 15 + 20; 
+                heart.style.fontSize = size + 'px';
+                heart.style.animationDelay = Math.random() * 6 + 's';
+                heart.style.animationDuration = (Math.random() * 4 + 7) + 's'; 
+                container.appendChild(heart);
+            }
+        }
+
+        function triggerSecretAnimation() {
+            secretTriggeredThisSession = true;
+            secretHeart.classList.remove('visible'); 
+            switchClickCount = 0; 
+
+            playClickSound();
+            startFullAnimationMusic();
+
+            textDisplay.innerHTML = "SOON~ ★<br><span style='font-size:0.6em; opacity:0.9;'>(˶˃ ᵕ ˂˶)</span>";
+            textDisplay.classList.add('cute-mode');
+            document.getElementById('lightswitch-wrapper').style.display = 'none';
+
+            let dropInterval = setInterval(() => {
+                createDroppingPinkHeart();
+            }, 430);
+
+            setTimeout(() => {
+                clearInterval(dropInterval);
+                stopFullAnimationMusic();
+                document.body.classList.add('scene-fade-out');
+
+                setTimeout(() => {
+                    secretLayer.innerHTML = '';
+                    textDisplay.innerText = "Soon.";
+                    textDisplay.classList.remove('cute-mode');
+                    document.getElementById('lightswitch-wrapper').style.display = 'inline-block';
+                    document.body.classList.remove('scene-fade-out');
+                    
+                    targetClicks = Math.floor(Math.random() * 4) + 6; 
+                    secretTriggeredThisSession = false; 
+                }, 1500);
+
+            }, 5500);
+        }
+
+        function createDroppingPinkHeart() {
+            const pinkHeart = document.createElement('div');
+            pinkHeart.className = 'dropping-pink-heart';
+
+            const targetX = Math.random() * 70 + 15; 
+            const targetY = Math.random() * 45 + 20; 
+            const floatDuration = Math.random() * 300 + 1300; 
+
+            pinkHeart.style.left = targetX + 'vw';
+            pinkHeart.style.setProperty('--target-y', targetY + 'vh');
+            pinkHeart.style.animationDuration = floatDuration + 'ms';
+            
+            pinkHeart.innerHTML = `
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ff6ebb"/>
+                </svg>
+            `;
+            
+            secretLayer.appendChild(pinkHeart);
+
+            // Reverted back to minimal, clean texturing particles
+            const classicTextures = ['★', '☆', '♡', '♥', '✧'];
+            let sparkleTick = setInterval(() => {
+                const r = pinkHeart.getBoundingClientRect();
+                if (!r.width) return;
+                const sparkle = document.createElement('div');
+                sparkle.className = 'heart-sparkle-trail';
+                
+                sparkle.innerText = classicTextures[Math.floor(Math.random() * classicTextures.length)];
+                sparkle.style.left = (r.left + r.width / 2 + (Math.random() * 24 - 12)) + 'px';
+                sparkle.style.top = (r.top + r.height / 2 + (Math.random() * 24 - 12)) + 'px';
+                secretLayer.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 700);
+            }, 75);
+            
+            setTimeout(() => {
+                clearInterval(sparkleTick);
+                const rect = pinkHeart.getBoundingClientRect();
+                pinkHeart.remove();
+                
+                playExplosionSound();
+                createRainbowBurst(rect.left + (rect.width / 2), rect.top + (rect.height / 2));
+            }, floatDuration);
+        }
+
+        function createRainbowBurst(startX, startY) {
+            const particleCount = 14; 
+
+            const ring = document.createElement('div');
+            ring.className = 'burst-pop-ring';
+            ring.style.left = startX + 'px';
+            ring.style.top = startY + 'px';
+            secretLayer.appendChild(ring);
+            setTimeout(() => ring.remove(), 600);
+
+            const distance = Math.random() * 40 + 170; 
+            const rotationOffset = Math.random() * 2 * Math.PI; 
+            const spinDirection = Math.random() > 0.5 ? '120deg' : '-120deg';
+
+            const burstItems = ['♡', '♥', '★', '☆'];
+
+            for (let i = 0; i < particleCount; i++) {
+                const burstShard = document.createElement('div');
+                burstShard.className = 'rainbow-burst-shard';
+                burstShard.innerText = burstItems[Math.floor(Math.random() * burstItems.length)];
+
+                burstShard.style.left = startX + 'px';
+                burstShard.style.top = startY + 'px';
+
+                const angle = (i / particleCount) * 2 * Math.PI + rotationOffset;
+                const targetX = Math.cos(angle) * distance;
+                const targetY = Math.sin(angle) * distance;
+
+                burstShard.style.setProperty('--tx', `${targetX}px`);
+                burstShard.style.setProperty('--ty', `${targetY}px`);
+                burstShard.style.setProperty('--spin', spinDirection);
+
+                secretLayer.appendChild(burstShard);
+
+                setTimeout(() => { burstShard.remove(); }, 1400);
+            }
+        }
+    </script>
+</body>
+</html>
