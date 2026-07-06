@@ -18,7 +18,6 @@ body {
     opacity: 1;
 }
 
-/* fade-out!! AAAA! */
 body.scene-fade-out {
     opacity: 0;
 }
@@ -38,15 +37,15 @@ body.scene-fade-out {
     transition: color 0.15s ease, font-size 0.2s ease;
 }
 
-/* --- how cute,, please last for long!! (it won't,, only 7 seconds.(╥‸╥)) --- */
+/* --- mi cute fontiess♡ --- */
 .teaser-text.cute-mode {
     font-family: 'Fredoka', sans-serif;
-    font-size: 4rem; /* Noticeably larger styling adjustments */
-    color: #ff69b4 !important; /* Forces soft hot pink state */
-    text-shadow: 0 0 15px rgba(255, 105, 180, 0.4);
+    font-size: 5rem; 
+    color: #ff69b4 !important; 
+    text-shadow: 0 0 20px rgba(255, 105, 180, 0.6);
 }
 
-/* --- lightswitch --- */
+/* --- lightswitch.. turn it on,, or don't.. i suppose.(╥﹏╥)--- */
 .switch-container {
     cursor: pointer;
     display: inline-block;
@@ -72,7 +71,7 @@ body.scene-fade-out {
     border: 2px solid #222;
 }
 
-/* --- mi hearts are floating... wow!!!ꉂ(˵˃ ᗜ ˂˵) --- */
+/* --- mi hearts are floating now!!♡ --- */
 #hearts-container, #secret-animation-layer {
     position: absolute;
     top: 0;
@@ -93,64 +92,112 @@ body.scene-fade-out {
 }
 
 @keyframes drift {
-    0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+    0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0; }
     10% { opacity: 0.8; }
     90% { opacity: 0.8; }
-    100% { transform: translate(120vw, 30vh) rotate(45deg); opacity: 0; }
+    100% { transform: translate3d(120vw, 30vh, 0) rotate(45deg); opacity: 0; }
 }
 
-/* --- secret,, button?? a what...? secret!! secret!!! WOO-HOO!!(∩˃o˂∩) --- */
+/* --- uuu, so beautiful!!♡ --- */
 #secret-rainbow-heart {
     position: absolute;
     bottom: 25px;
     right: 25px;
-    font-size: 38px;
+    font-size: 50px;
     cursor: pointer;
     user-select: none;
-    pointer-events: auto; /* it has to register... it HAS to. */
-    display: none;
-    animation: rapidRainbow 0.25s infinite linear;
+    pointer-events: auto; 
+    display: none; 
+    
+    /* it's solid,, but it's so nice..♡ */
+    color: transparent;
+    background: linear-gradient(45deg, #ff1493, #ff69b4, #ffb6c1, #c71585, #ff6ebb);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: pinkMessFlow 1.5s ease infinite;
 }
 
 #secret-rainbow-heart.visible {
     display: block;
 }
 
-/* --- YOUR best friend's bullet-pattern,, uuu! --- */
+@keyframes pinkMessFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 
-/* mi pink hearts go BOOOOOM!! */
-.dropping-pink-heart {
+/* --- (hopefully) smooth attacks by YOUR best friend!♡ --- */
+
+/* mi pink heart dropped.. thank you for clicking enough.♡ */
+.dropping-pink-heart-wrapper {
     position: absolute;
-    top: -50px;
-    font-size: 55px;
-    color: #ff6ebb;
-    text-shadow: 0 0 10px #ff0080;
+    top: -80px;
+    width: 75px;  /* Significantly larger scaling layout */
+    height: 75px;
     z-index: 5;
-    animation: dropDown 1.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    will-change: transform;
+    /* this uses your hardware a bit,, be careful with it!!(╥‸╥) */
+    animation: asrielSwayDrop 1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-@keyframes dropDown {
-    0% { transform: translateY(0) scale(0.6); opacity: 0; }
-    15% { opacity: 1; transform: translateY(10vh) scale(1.1); }
-    100% { transform: translateY(65vh) scale(1); opacity: 1; }
+.cute-pink-heart-svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 12px #ff0080);
 }
 
+/* ehehe,, seems like you've seen this bullet-pattern somewhere, didn't you...? */
+/* wait, why are you even here, in the files...? */
+/* i hope you enjoy your stay on the site, though!ฅ^>⩊<^ฅ */
+@keyframes asrielSwayDrop {
+    0% {
+        transform: translate3d(0, 0, 0) scale(0.5);
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+        transform: translate3d(-3vw, 12vh, 0) scale(1.2);
+    }
+    45% {
+        transform: translate3d(4vw, 35vh, 0) scale(1);
+    }
+    75% {
+        transform: translate3d(-4vw, 58vh, 0) scale(1.1);
+    }
+    100% {
+        transform: translate3d(2vw, 75vh, 0) scale(1);
+        opacity: 1;
+    }
+}
+
+/* rainbowww!! */
 .rainbow-burst-shard {
     position: absolute;
-    font-size: 32px;
+    font-size: 34px;
     font-weight: bold;
     user-select: none;
     z-index: 4;
-    animation: rapidRainbow 0.2s infinite linear, burstOutward 1.8s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+    will-change: transform;
+    animation: rapidRainbow 0.15s infinite linear, burstOutwardSmooth 1.4s cubic-bezier(0.05, 0.85, 0.2, 1) forwards;
 }
 
-@keyframes burstOutward {
-    0% { transform: translate(0, 0) scale(1); opacity: 1; }
-    80% { opacity: 1; }
-    100% { transform: translate(var(--tx), var(--ty)) scale(0.5); opacity: 0; }
+@keyframes burstOutwardSmooth {
+    0% {
+        transform: translate3d(-50%, -50%, 0) scale(1.3);
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate3d(calc(-50% + var(--tx)), calc(-50% + var(--ty)), 0) scale(0.3);
+        opacity: 0;
+    }
 }
 
-/* cycling running.. rapidly,,?(*ᴗ͈ˬᴗ͈)ꕤ*.ﾟ */
+/* hyper-responsive cutiesssss...♡ */
 @keyframes rapidRainbow {
     0%   { color: #ff0000; }
     17%  { color: #ffa500; }

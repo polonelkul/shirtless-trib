@@ -5,21 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soon.</title>
     <link rel="stylesheet" href="style.css">
-    <!-- thanks google, mi font is cute now!!..♡ -->
+    <!-- really cutie font for mi "secretive" message, say thanks to google!!♡ -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- mi hearts are floating.. how cool!! -->
+    <!-- backdrop for mi floating hearts..♡ -->
     <div id="hearts-container"></div>
-    <!-- "YOUR best friend's" animated hearts..♡ -->
+    <!-- oww,, YOUR best friend's bullet-pattern...! -->
     <div id="secret-animation-layer"></div>
 
     <div class="center-container" id="main-content">
         <p class="teaser-text" id="text-display">Soon.</p>
         
-        <!-- lightswitch.. -->
+        <!-- lightswitch.. turn it on - if you'd like to..♡ -->
         <div class="switch-container" id="lightswitch-wrapper" onclick="toggleLight()">
             <div class="switch-housing">
                 <div class="switch-toggle"></div>
@@ -27,8 +27,8 @@
         </div>
     </div>
 
-    <!-- RAINBOW,, it feels like,, it's... raining? raining rainbows..? is that even a word? -->
-    <div id="secret-rainbow-heart" onclick="triggerSecretAnimation()">♡</div>
+    <!-- mi pink heartiesss♡ -->
+    <div id="secret-rainbow-heart" onclick="triggerSecretAnimation()">♥</div>
 
     <script>
         const container = document.getElementById('hearts-container');
@@ -39,23 +39,53 @@
 
         let switchClickCount = 0;
         let secretTriggeredThisSession = false;
+        let animationMusic = null; 
+
+        // generating your tries.. don't give up yet!!♡
+        let targetClicks = Math.floor(Math.random() * 4) + 6; 
+
+        // --- custom audio!! not avaliable yet,, ---
+        function playClickSound() {
+            const audio = new Audio('smolheart.mp3');
+            audio.volume = 0.5;
+            audio.play().catch(e => console.log("Audio file missing or blocked:", e));
+        }
+
+        function playExplosionSound() {
+            const audio = new Audio('pinkiii.mp3');
+            audio.volume = 0.5;
+            audio.play().catch(e => console.log("Audio file missing or blocked:", e));
+        }
+
+        function startFullAnimationMusic() {
+            animationMusic = new Audio('heartheartheart.mp3');
+            animationMusic.volume = 0.5;
+            animationMusic.play().catch(e => console.log("Audio file missing or blocked:", e));
+        }
+
+        function stopFullAnimationMusic() {
+            if (animationMusic) {
+                animationMusic.pause();
+                animationMusic.currentTime = 0; 
+            }
+        }
 
         function toggleLight() {
             const isLightMode = document.body.classList.toggle('light-mode');
             
-            // normal hearts..♡
             if (isLightMode) {
                 createNormalHearts(40);
             } else {
                 container.innerHTML = '';
             }
 
-            // uuu, secret! secret!! i'd like to see what's that!!( ˶°ㅁ°) !!
+            // trigger logic-factors,, well, it seems like your tries faded away.. 'try' again.݁ ˖Ი𐑼⋆
             if (!secretTriggeredThisSession) {
                 switchClickCount++;
-                if (switchClickCount >= 6 && switchClickCount <= 9) {
+                if (switchClickCount === targetClicks) {
                     secretHeart.classList.add('visible');
-                } else if (switchClickCount > 9) {
+                } else {
+                    // baii-baii!(๑ᵔ⤙ᵔ๑)
                     secretHeart.classList.remove('visible');
                 }
             }
@@ -77,30 +107,29 @@
             }
         }
 
-        // --- mi hearts so cute now!!(˶˃ ᵕ ˂˶) ---
+        // --- asyncing mi secretive hearts..(˶>⩊<˶) ---
         function triggerSecretAnimation() {
             secretTriggeredThisSession = true;
-            secretHeart.classList.remove('visible');
-            switchClickCount = 0; // reset!! aww..
+            secretHeart.classList.remove('visible'); 
+            switchClickCount = 0; 
 
-            // modifying text and stuff!!
+            playClickSound();
+            startFullAnimationMusic();
+
             textDisplay.innerText = "SOON.<3";
             textDisplay.classList.add('cute-mode');
             document.getElementById('lightswitch-wrapper').style.display = 'none';
 
-            // pink heartiesss!!
+            // mi pink hearts are swaying!!♡
             let dropInterval = setInterval(() => {
                 createDroppingPinkHeart();
-            }, 450);
+            }, 500);
 
-            //  fadeout..
             setTimeout(() => {
                 clearInterval(dropInterval);
-                
-                // they go away so fast!! no.. it can't be... NOOOOOO!!!
+                stopFullAnimationMusic();
                 document.body.classList.add('scene-fade-out');
 
-                //  ehh,, just regular stuff?? sooo boooooring D:
                 setTimeout(() => {
                     secretLayer.innerHTML = '';
                     textDisplay.innerText = "Soon.";
@@ -108,55 +137,65 @@
                     document.getElementById('lightswitch-wrapper').style.display = 'inline-block';
                     
                     document.body.classList.remove('scene-fade-out');
-                    secretTriggeredThisSession = false; // Arm system to allow re-triggering
+                    
+                    // roll the dice..♡
+                    targetClicks = Math.floor(Math.random() * 4) + 6; 
+                    secretTriggeredThisSession = false; 
                 }, 1500);
 
             }, 5500);
         }
 
         function createDroppingPinkHeart() {
-            const pinkHeart = document.createElement('div');
-            pinkHeart.className = 'dropping-pink-heart';
-            pinkHeart.innerText = '♥'; // Solid heavy glyph
+            const wrapper = document.createElement('div');
+            wrapper.className = 'dropping-pink-heart-wrapper';
             
-            // they could be anywhere.. wha-,, mi hearts could b-be... ANYWHERE?
-            pinkHeart.style.left = (Math.random() * 60 + 20) + 'vw';
-            secretLayer.appendChild(pinkHeart);
+            // Randomize spawn along horizontal axis
+            wrapper.style.left = (Math.random() * 70 + 15) + 'vw';
+            
+            // injecting (ehehe, not your cheats!!) those hearties' cute colours!!♡
+            wrapper.innerHTML = `
+                <svg class="cute-pink-heart-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ff6ebb"/>
+                </svg>
+            `;
+            
+            secretLayer.appendChild(wrapper);
 
-            // EXPLOSIVE!!!! HAHAHA!!!!
-            const explosionTriggerTime = 1400; // Time in milliseconds it takes to fall
+            const explosionTriggerTime = 1600;
             
             setTimeout(() => {
-                const rect = pinkHeart.getBoundingClientRect();
-                pinkHeart.remove();
+                const rect = wrapper.getBoundingClientRect();
+                wrapper.remove();
                 
-                // wooooow..!! ka-boom!!
-                createRainbowBurst(rect.left, rect.top);
+                playExplosionSound();
+                createRainbowBurst(rect.left + (rect.width / 2), rect.top + (rect.height / 2));
             }, explosionTriggerTime);
         }
 
         function createRainbowBurst(startX, startY) {
-            const particleCount = 12;
+            const particleCount = 14;
             
             for (let i = 0; i < particleCount; i++) {
                 const burstShard = document.createElement('div');
                 burstShard.className = 'rainbow-burst-shard';
                 burstShard.innerText = '♡';
+                
                 burstShard.style.left = startX + 'px';
                 burstShard.style.top = startY + 'px';
 
                 const angle = (i / particleCount) * 2 * Math.PI;
-                const distance = 160; // Spread radius scaling parameter
+                const distance = 200;
                 const targetX = Math.cos(angle) * distance;
                 const targetY = Math.sin(angle) * distance;
 
+                // Pass 3D spatial points to CSS layer
                 burstShard.style.setProperty('--tx', `${targetX}px`);
                 burstShard.style.setProperty('--ty', `${targetY}px`);
 
                 secretLayer.appendChild(burstShard);
 
-                // auto sweep.. dang it.
-                setTimeout(() => { burstShard.remove(); }, 2000);
+                setTimeout(() => { burstShard.remove(); }, 1500);
             }
         }
     </script>
