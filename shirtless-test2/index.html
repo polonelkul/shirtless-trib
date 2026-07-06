@@ -42,7 +42,7 @@
         let animationMusic = null; 
 
         // let's roll the dice..!♡
-        let targetClicks = Math.floor(Math.random() * 4) + 6; 
+        let targetClicks = Math.floor(Math.random() * 4) + 6;[cite: 2]
 
         // --- audio,, will add them laterrrr..♡ ---
         // --- beware to not use headphones while listening to them.. it'll definitely sound trashy..♡
@@ -116,14 +116,14 @@
             playClickSound();
             startFullAnimationMusic();
 
-            textDisplay.innerText = "SOON.<3";
+            textDisplay.innerHTML = "SOON~ 🎀<br><span style='font-size:0.6em; opacity:0.9;'>(˶˃ ᵕ ˂˶)</span>";
             textDisplay.classList.add('cute-mode');
             document.getElementById('lightswitch-wrapper').style.display = 'none';
 
             // Generate beautifully smooth, clean dropping hearts
             let dropInterval = setInterval(() => {
                 createDroppingPinkHeart();
-            }, 450);
+            }, 430);
 
             setTimeout(() => {
                 clearInterval(dropInterval);
@@ -150,16 +150,16 @@
             const pinkHeart = document.createElement('div');
             pinkHeart.className = 'dropping-pink-heart';
 
-            // Randomize both horizontal placement and a completely dynamic explosion height plane (firework mode!)
-            const targetX = Math.random() * 70 + 15; // 15vw - 85vw
-            const targetY = Math.random() * 50 + 20; // 20vh - 70vh split height range
-            const floatDuration = Math.random() * 300 + 1200; // casual, varied drop intervals
+            // Dynamic trajectory values for cozy firework behavior
+            const targetX = Math.random() * 70 + 15; 
+            const targetY = Math.random() * 45 + 20; 
+            const floatDuration = Math.random() * 300 + 1300; 
 
             pinkHeart.style.left = targetX + 'vw';
             pinkHeart.style.setProperty('--target-y', targetY + 'vh');
             pinkHeart.style.animationDuration = floatDuration + 'ms';
             
-            // Large bubble style layout vector path
+            // Premium bubble-style SVG heart configuration
             pinkHeart.innerHTML = `
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ff6ebb"/>
@@ -168,18 +168,21 @@
             
             secretLayer.appendChild(pinkHeart);
 
-            // a lil' trail of twinkles following the heart down, hehe..♡
+            // Coquette/princess themed sparkly trailing textures! 🎀✨
+            const coquetteTextures = ['🎀', '✨', '🌸', '💖', '💕', '💫'];
             let sparkleTick = setInterval(() => {
                 const r = pinkHeart.getBoundingClientRect();
                 if (!r.width) return;
                 const sparkle = document.createElement('div');
                 sparkle.className = 'heart-sparkle-trail';
-                sparkle.innerText = Math.random() > 0.5 ? '✦' : '♡';
-                sparkle.style.left = (r.left + r.width / 2 + (Math.random() * 20 - 10)) + 'px';
-                sparkle.style.top = (r.top + r.height / 2 + (Math.random() * 20 - 10)) + 'px';
+                
+                // Pull a completely random girly element for the path trail
+                sparkle.innerText = coquetteTextures[Math.floor(Math.random() * coquetteTextures.length)];
+                sparkle.style.left = (r.left + r.width / 2 + (Math.random() * 24 - 12)) + 'px';
+                sparkle.style.top = (r.top + r.height / 2 + (Math.random() * 24 - 12)) + 'px';
                 secretLayer.appendChild(sparkle);
                 setTimeout(() => sparkle.remove(), 700);
-            }, 80);
+            }, 75);
             
             setTimeout(() => {
                 clearInterval(sparkleTick);
@@ -187,15 +190,13 @@
                 pinkHeart.remove();
                 
                 playExplosionSound();
-                // every pop lands somewhere new (mi friend's heart chose the spot!) and blooms its own lil' variation..♡
                 createRainbowBurst(rect.left + (rect.width / 2), rect.top + (rect.height / 2));
             }, floatDuration);
         }
 
         function createRainbowBurst(startX, startY) {
-            const particleCount = 14; // same circular shape, always..♡
+            const particleCount = 14; 
 
-            // a soft glowing ring blooms where it pops, for extra cuteness..♡
             const ring = document.createElement('div');
             ring.className = 'burst-pop-ring';
             ring.style.left = startX + 'px';
@@ -203,15 +204,17 @@
             secretLayer.appendChild(ring);
             setTimeout(() => ring.remove(), 600);
 
-            // randomizing the burst's size + spin a lil' bit each time, so no two pops feel the same..♡
-            const distance = Math.random() * 40 + 160; // 160 - 200
-            const rotationOffset = Math.random() * 2 * Math.PI; // spins the whole ring randomly
-            const spinDirection = Math.random() > 0.5 ? '90deg' : '-90deg';
+            const distance = Math.random() * 40 + 170; 
+            const rotationOffset = Math.random() * 2 * Math.PI; 
+            const spinDirection = Math.random() > 0.5 ? '120deg' : '-120deg';
+
+            // Dynamic particle pool for festive fairy bursts
+            const burstItems = ['♡', '✨', '🌸', '🎀', '💖'];
 
             for (let i = 0; i < particleCount; i++) {
                 const burstShard = document.createElement('div');
                 burstShard.className = 'rainbow-burst-shard';
-                burstShard.innerText = Math.random() > 0.15 ? '♡' : '✦'; // sneaky lil' sparkle mixed in..♡
+                burstShard.innerText = burstItems[Math.floor(Math.random() * burstItems.length)];
 
                 burstShard.style.left = startX + 'px';
                 burstShard.style.top = startY + 'px';
@@ -220,7 +223,6 @@
                 const targetX = Math.cos(angle) * distance;
                 const targetY = Math.sin(angle) * distance;
 
-                // 3d translations,, hip-hip hurrayyy!!
                 burstShard.style.setProperty('--tx', `${targetX}px`);
                 burstShard.style.setProperty('--ty', `${targetY}px`);
                 burstShard.style.setProperty('--spin', spinDirection);
