@@ -1,0 +1,324 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Fredoka', sans-serif;
+}
+
+/* the base,, reworked into something extra squishy + dreamy..♡ */
+body {
+    background: radial-gradient(circle at 30% 20%, #221a3d 0%, #150f28 45%, #0b0914 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    transition: background-color 0.25s ease, opacity 1.2s ease;
+    opacity: 1;
+    cursor: default;
+}
+
+body.scene-fade-out {
+    opacity: 0;
+}
+
+/* twinkly star dust floating behind everything, for extra dreaminess..♡ */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.5) 50%, transparent 51%),
+        radial-gradient(2px 2px at 70% 65%, rgba(255,182,193,0.6) 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 40% 80%, rgba(255,255,255,0.4) 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 85% 15%, rgba(255,110,187,0.5) 50%, transparent 51%),
+        radial-gradient(2px 2px at 55% 45%, rgba(255,255,255,0.35) 50%, transparent 51%);
+    background-size: 100% 100%;
+    animation: twinkleDust 4s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes twinkleDust {
+    0% { opacity: 0.4; }
+    100% { opacity: 0.9; }
+}
+
+.center-container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    z-index: 10;
+}
+
+.teaser-text {
+    color: #ffffff;
+    font-size: 1.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 12px rgba(255, 182, 220, 0.35);
+    transition: color 0.25s ease, font-size 0.3s ease;
+}
+
+/* --- cute-mode activated..♡ --- */
+.teaser-text.cute-mode {
+    font-size: 5.5rem;
+    color: #ff6ebb !important;
+    text-shadow:
+        0 0 25px rgba(255, 110, 187, 0.75),
+        0 0 55px rgba(255, 182, 220, 0.4);
+    animation: textHeartbeat 0.6s infinite alternate ease-in-out;
+}
+
+@keyframes textHeartbeat {
+    0% { transform: scale(0.96) rotate(-1deg); }
+    100% { transform: scale(1.05) rotate(1deg); }
+}
+
+/* --- lightswitch,, now wrapped up like a lil' present..♡ --- */
+.switch-container {
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.switch-container:hover {
+    transform: scale(1.08) rotate(-3deg);
+}
+
+.switch-container:active {
+    transform: scale(0.92);
+}
+
+.switch-housing {
+    width: 30px;
+    height: 48px;
+    background-color: #1e1a30;
+    border: 3px solid #ffffff;
+    border-radius: 20px; /* Pillow-soft round edges */
+    position: relative;
+    padding: 2px;
+    box-shadow: 0 0 14px rgba(255, 182, 220, 0.25), inset 0 0 8px rgba(255,255,255,0.05);
+    transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.switch-toggle {
+    width: 18px;
+    height: 18px;
+    background-color: #ffffff;
+    border-radius: 50%; /* Completely circular toggle bead */
+    position: absolute;
+    top: 4px;
+    left: 3px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255,255,255,0.6);
+    transition: top 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.25s ease;
+}
+
+/* a teeny heart sparkle riding on the toggle bead, hehe..♡ */
+.switch-toggle::after {
+    content: "♡";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: #ff9ecf;
+    line-height: 1;
+}
+
+#hearts-container, #secret-animation-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    color: transparent;
+    -webkit-text-stroke: 2px #ffb6c1; /* ehehe, hue bordersss!!♡ */
+    user-select: none;
+    opacity: 0;
+    animation: drift linear infinite;
+    filter: drop-shadow(0 0 4px rgba(255, 182, 220, 0.5));
+}
+
+@keyframes drift {
+    0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(0.9); opacity: 0; }
+    10% { opacity: 0.7; }
+    50% { transform: translate3d(55vw, 10vh, 0) rotate(20deg) scale(1.1); }
+    90% { opacity: 0.7; }
+    100% { transform: translate3d(120vw, 30vh, 0) rotate(45deg) scale(0.9); opacity: 0; }
+}
+
+/* --- cutie effects for mi secretive heart..♡ --- */
+#secret-rainbow-heart {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    font-size: 55px;
+    cursor: pointer;
+    user-select: none;
+    pointer-events: auto;
+    display: none;
+    color: transparent;
+
+    /* holo-effect for mi cutie elements..♡ */
+    background: linear-gradient(
+        135deg,
+        #ff1493 0%,   /* Vibrant Hot Pink */
+        #ff69b4 25%,  /* Bubblegum Pink */
+        #ffb6c1 45%,  /* Ultra Bright Pastel Gloss */
+        #4a0d2e 70%,  /* Deep Dark Plum / CS2 Holo Shadow */
+        #ff007f 100%  /* Vibrant Neon Pink Magenta */
+    );
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    filter: drop-shadow(0 4px 12px rgba(255, 20, 147, 0.5));
+    animation: cs2HoloShaderFlow 2s linear infinite, secretFloat 2.4s ease-in-out infinite;
+}
+
+#secret-rainbow-heart.visible {
+    display: block;
+}
+
+@keyframes cs2HoloShaderFlow {
+    0% { background-position: 0% 50%; transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.1) rotate(5deg); }
+    100% { background-position: 100% 50%; transform: scale(1) rotate(0deg); }
+}
+
+@keyframes secretFloat {
+    0%, 100% { margin-top: 0px; }
+    50% { margin-top: -8px; }
+}
+
+/* --- hopefully,, it won't be laggy anymore..♡ --- */
+
+/* simplifying,, but cuter n' glossier..♡ */
+.dropping-pink-heart {
+    position: absolute;
+    top: -90px;
+    width: 80px;
+    height: 80px;
+    z-index: 5;
+    will-change: transform;
+    animation: hardwareOptimizedDrop 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.dropping-pink-heart svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 15px rgba(255, 110, 187, 0.8)) drop-shadow(0 0 30px rgba(255, 182, 220, 0.4));
+}
+
+@keyframes hardwareOptimizedDrop {
+    0% {
+        transform: translate3d(0, 0, 0) scale(0.5) rotate(-10deg);
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+    }
+    60% {
+        transform: translate3d(1vw, 40vh, 0) scale(1.25) rotate(-2deg);
+    }
+    100% {
+        transform: translate3d(2vw, 85vh, 0) scale(1.1) rotate(15deg);
+        opacity: 1;
+    }
+}
+
+/* the lil' sparkle twinkles that ride along each falling heart..♡ */
+.heart-sparkle-trail {
+    position: absolute;
+    font-size: 14px;
+    color: #fff0f7;
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.9);
+    pointer-events: none;
+    z-index: 5;
+    will-change: transform, opacity;
+    animation: sparkleTrailFade 0.7s ease-out forwards;
+}
+
+@keyframes sparkleTrailFade {
+    0% { transform: scale(1) translateY(0); opacity: 1; }
+    100% { transform: scale(0.3) translateY(20px); opacity: 0; }
+}
+
+/* --- the circular pop-burst, kept exactly the same shape,, just SO much cuter..♡ --- */
+.rainbow-burst-shard {
+    position: absolute;
+    font-size: 36px;
+    font-weight: bold;
+    user-select: none;
+    z-index: 4;
+    will-change: transform;
+    filter: drop-shadow(0 0 8px currentColor);
+    animation: rapidRainbow 0.12s infinite linear, burstOutwardClean 1.4s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes burstOutwardClean {
+    0% {
+        transform: translate3d(-50%, -50%, 0) scale(1.3) rotate(0deg);
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate3d(calc(-50% + var(--tx)), calc(-50% + var(--ty)), 0) scale(0.15) rotate(var(--spin, 90deg));
+        opacity: 0;
+    }
+}
+
+@keyframes rapidRainbow {
+    0%   { color: #ff6ec7; }
+    20%  { color: #ff9ecf; }
+    40%  { color: #ffd6ec; }
+    60%  { color: #d6a4ff; }
+    80%  { color: #a4c8ff; }
+    100% { color: #ff6ec7; }
+}
+
+/* a soft glowing pop-ring that blooms at each burst center, for extra cuteness..♡ */
+.burst-pop-ring {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 182, 220, 0.8);
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    pointer-events: none;
+    animation: popRingGrow 0.6s ease-out forwards;
+}
+
+@keyframes popRingGrow {
+    0% { width: 10px; height: 10px; opacity: 0.9; border-width: 4px; }
+    100% { width: 160px; height: 160px; opacity: 0; border-width: 1px; }
+}
+
+/* --- lightmode,, upgraded into a soft cotton-candy sky..♡ --- */
+body.light-mode {
+    background: radial-gradient(circle at 30% 20%, #fff0f5 0%, #fff5f7 60%, #ffeaf1 100%);
+}
+body.light-mode::before {
+    opacity: 0.5;
+}
+body.light-mode .teaser-text:not(.cute-mode) {
+    color: #7a5c72;
+}
+body.light-mode .switch-housing {
+    background-color: #ffe3e9;
+    border-color: #7a5c72;
+}
+body.light-mode .switch-toggle {
+    top: 23px; /* shifts down smoothly.. mrrp..♡ */
+    background-color: #ff6ebb;
+}
